@@ -11,14 +11,18 @@ Wei Chenlong, of Han ethnicity, was born on June 25, 2000, in Linwei District, W
 
 Educational Background: 
 ======
-2025 to the present, Studied at the Department of Pharmacy, School of Pharmacy, Peking University, Pursuing a doctoral degree.
-2023-2025, Studied at the Department of Pharmacy, School of Pharmacy, Peking University, Obtain a Master of Science degree.
+2025 to the present, Studied at the Department of Pharmacy, School of Pharmacy, Peking University, Pursuing a doctoral degree
+
+2023-2025, Studied at the Department of Pharmacy, School of Pharmacy, Peking University, Obtain a Master of Science degree
+
 2019-2023, Studied Pharmacy at Peking University School of Pharmacy, Obtain a Bachelor of Science degree.
 
 Research Areas:
 ======
-Design and development of ionizable cationic lipid libraries; 
-organ-targeting LNP delivery vehicles; 
+Design and development of ionizable cationic lipid libraries
+
+organ-targeting LNP delivery vehicles
+
 mRNA drug delivery.
 
 Publications: 
