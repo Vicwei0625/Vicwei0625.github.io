@@ -7,38 +7,24 @@ redirect_from:
   - /about.html
 ---
 
-This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. Incidentally, these same features make it a great template for anyone that needs to show off a professional template!
+Wei Chenlong, of Han ethnicity, was born on June 25, 2000, in Linwei District, Weinan City, Shaanxi Province. He is a member of the Chinese Communist Youth League, with his ancestral hometown located in Qin'an County, Tianshui City, Gansu Province. Currently, he is pursuing a Ph.D. in the Department of Pharmaceutics at the School of Pharmaceutical Sciences, Peking University, under the supervision of Research Fellow Miao Lei.
 
- You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and Markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
-
-Educational Background
+Educational Background: 
 ======
 2025 to the present, Studied at the Department of Pharmacy, School of Pharmacy, Peking University, Pursuing a doctoral degree
 2023-2025, Studied at the Department of Pharmacy, School of Pharmacy, Peking University, Obtain a Master of Science degree
 2019-2023, Studied Pharmacy at Peking University School of Pharmacy, Obtain a Bachelor of Science degree
 
-
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured Markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various Markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
-
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your Markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the Markdown files! You can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
-
-For those users that need more advanced functionality, the template also supports the following popular tools:
-- [MathJax](https://www.mathjax.org/) for mathematical equations
-- [Mermaid](https://mermaid.js.org/) for diagraming
-- [Plotly](https://plotly.com/javascript/) for plotting
-
-Getting started
+Research Areas:
 ======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](https://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+Design and development of ionizable cationic lipid libraries; 
+organ-targeting LNP delivery vehicles; 
+mRNA drug delivery.
 
-Site-wide configuration
+Publications: 
 ------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+1. Shan X, Zhao Z, Lai P, Liu Y, Li B, Ke Y, Jiang H, Zhou Y, Li W, Wang Q, Qin P, Xue Y, Zhang Z, Wei C, Ma B, Liu W, Luo C, Lu X, Lin J, Shu L, Jie Y, Xian X, Delcassian D, Ge Y, Miao L. RNA nanotherapeutics with fibrosis overexpression and retention for MASH treatment. Nat Commun. 2024 Aug 27;15(1):7263. doi: 10.1038/s41467-024-51571-8. PMID: 39191801; PMCID: PMC11350072.
+2. Zhao Z, Shan X, Ding J, Ma B, Li B, Huang W, Yang Q, Fang Y, Chen J, Song C, Wei C, Liu S, Cheng X, Zhang S, Liu Y, Wu H, Luo C, Shu S, Qiao X, Wang Z, Lu X, Miao L. Boosting RNA nanotherapeutics with V-ATPase activating non-inflammatory lipid nanoparticles to treat chronic lung injury. Nat Commun. 2025 Jul 14;16(1):6477. doi: 10.1038/s41467-025-61688-z. PMID: 40659631; PMCID: PMC12259844.
 
 Create content & metadata
 ------
