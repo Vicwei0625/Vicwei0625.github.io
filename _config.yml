@@ -23,12 +23,12 @@ repository               : "Vicwei0625/Vicwei0625.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "/images/1910307423.png"
-  name             : "Chenlong Wei"
+  avatar           : "../images/1910307423.png"
+  name             : "Chenlong Wei(魏辰龙)"
   pronouns         : # example: "she/her"  
-  bio              : "Research workhorse"
+  bio              : "Peking university"
   location         : "Beijing, China"
-  employer         : "Peking university"
+  employer         : 
   #uri              : # URL
   email            : "1910307423@pku.edu.cn" 
 
@@ -51,7 +51,7 @@ author:
   bitbucket        : # Username - Update with your username on the site
   codepen          : # Username
   dribbble         : # Username
-  github           : "Vicwei0625"
+  github           : "https://github.com/Vicwei0625"
   kaggle           : # Username  
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
