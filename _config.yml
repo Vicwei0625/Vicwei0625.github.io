@@ -23,13 +23,13 @@ url                      : https://Vicwei0625.github.io # The base hostname & pr
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "/images/1910307423.png"
   name             : "Chenlong Wei"
 #  pronouns         : # example: "she/her"  
   bio              : "Research workhorse"
   location         : "Beijing, China"
   employer         : "Peking university"
-  uri              : # URL
+  #uri              : # URL
   email            : "1910307423@pku.edu.cn" 
 
   # Academic websites
