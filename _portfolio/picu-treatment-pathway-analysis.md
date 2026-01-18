@@ -133,12 +133,11 @@ rf_feature_importance = pd.DataFrame({
 }).sort_values('重要性', ascending=False)
 分析结果
 1. 诊断分布与死亡率
-avater: "images/portfolio/picu-treatment-outcome-prediction/diagnosis_category_distribution.png"
 
+![Project Logo]((https://images/portfolio/picu-treatment-outcome-prediction/diagnosis_category_distribution.png)?raw=true)
 数据分析显示，呼吸系统疾病是PICU最常见的诊断类别（占45.2%），其次是神经系统疾病（28.7%）和感染性疾病（12.3%）。
 
-https:///images/portfolio/picu-treatment-outcome-prediction/mortality_by_diagnosis_category.png
-
+![Project Logo]([https://github.com/johnsmith/myproject/blob/main/images/logo.png](https:///images/portfolio/picu-treatment-outcome-prediction/mortality_by_diagnosis_category.png)?raw=true)
 循环系统疾病的死亡率最高（15.6%），其次是神经系统疾病（9.8%）和先天畸形（8.2%）。总体死亡率为7.3%。
 
 2. 诊疗路径特征差异
