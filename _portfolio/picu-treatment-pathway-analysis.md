@@ -19,11 +19,11 @@ tech_stack:
   - name: Matplotlib
   - name: Seaborn
 ---
-项目背景
+# 项目背景
 本项目基于某儿童重症监护室（PICU）24小时内的临床诊疗数据，旨在分析患儿的诊疗路径特征与住院结局（生存/死亡）之间的关联。通过数据清洗、特征工程、统计分析以及机器学习建模，识别影响患儿预后的关键因素，构建死亡率预测模型，为临床决策提供数据支持。
 
-核心实现
-1. 诊断类别分类
+# 核心实现
+# 1. 诊断类别分类
 ```
 # 查看最常见的诊断
 #print("最常见的10个主要诊断:")
@@ -85,7 +85,7 @@ plt.savefig('figures/diagnosis_category_distribution.pdf', bbox_inches='tight')
 plt.show()
 #print("已保存: figures/diagnosis_category_distribution.png/.pdf")
 ```
-2. 诊疗路径特征分析
+# 2. 诊疗路径特征分析
 ```
 # Cell 6: 诊疗路径特征分析（修改版）
 plt.rcParams['font.sans-serif'] = ['SimHei'] # 使用黑体
@@ -151,7 +151,7 @@ treatment_comparison_df.to_csv('tables/treatment_pathway_comparison.csv', index=
 
 ```
 
-3. 逻辑回归预测模型及训练
+# 3. 逻辑回归预测模型及训练
 ```
 # 处理缺失值
 X = X.fillna(X.median())
@@ -230,7 +230,7 @@ lr_performance.to_csv('tables/logistic_regression_performance.csv', index=False,
 #print("已保存逻辑回归模型相关表格")
 ```
 
-4. 随机森林模型
+# 4. 随机森林模型
 ```
 # Cell 12: 随机森林模型（修改版）
 plt.rcParams['font.sans-serif'] = ['SimHei'] # 使用黑体
@@ -307,14 +307,14 @@ plt.show()
 
 ```
 
-分析结果
-1. 诊断分布与死亡率
+# 分析结果
+# 1. 诊断分布与死亡率
 ![主要诊断类别分类](/images/portfolio/diagnosis_category_distribution.png)
 数据分析显示，呼吸系统疾病是PICU最常见的诊断类别（占45.2%），其次是神经系统疾病（28.7%）和感染性疾病（12.3%）。
 
 循环系统疾病的死亡率最高（15.6%），其次是神经系统疾病（9.8%）和先天畸形（8.2%）。总体死亡率为7.3%。
 
-2. 诊疗路径特征差异
+# 2. 诊疗路径特征差异
 
 ![不同诊断大类的死亡率](/images/portfolio/mortality_by_diagnosis_category.png)
 
@@ -326,19 +326,19 @@ plt.show()
 
 抗生素使用率更高：78.3% vs 62.1%（p<0.05）
 
-3. 住院时长分析
+# 3. 住院时长分析
    
 ![住院时长与结局的关系](/images/portfolio/length_of_stay_analysis.png)
 
 生存组平均住院时长为6.2天，死亡组为4.8天（p<0.05）。死亡组住院时长分布更集中，多数在7天内。
 
-4. 生命体征差异
+# 4. 生命体征差异
 
 ![关键诊疗路径特征比较](/images/portfolio/treatment_pathway_comparison.png)
 
 死亡组平均心率（124.3次/分）显著高于生存组（112.7次/分，p<0.01），平均呼吸频率（32.1次/分）也显著高于生存组（26.4次/分，p<0.05）。
 
-5. 模型性能与特征重要性
+# 5. 模型性能与特征重要性
 
 ![随机森林特征重要性](/images/portfolio/random_forest_feature_importance.png)
 
