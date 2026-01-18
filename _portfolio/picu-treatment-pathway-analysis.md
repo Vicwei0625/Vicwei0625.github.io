@@ -25,7 +25,7 @@ tech_stack:
 核心实现
 1. 数据预处理与特征工程
 
-'''
+```
 # 创建年龄分组
 def age_group(months):
     if months < 12:
@@ -40,7 +40,7 @@ def age_group(months):
         return '青少年(≥12岁)'
 
 df_clean['age_group'] = df_clean['age_month'].apply(age_group)
-'''
+```
 
 # 基于ICD编码创建诊断大类
 def get_diagnosis_category(icd_code):
