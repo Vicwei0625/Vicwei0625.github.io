@@ -316,7 +316,7 @@ plt.show()
 
 # 2. 诊疗路径特征差异
 
-![图3: 显著差异的生命体征比较](/images/portfolio/vital_signs_comparison.png)
+![图3: 关键诊疗路径特征比较](/images/portfolio/treatment_pathway_comparison.png)
 
 死亡组相比生存组显示：
 
@@ -334,8 +334,8 @@ plt.show()
 
 # 4. 生命体征差异
 
-![图5: 关键诊疗路径特征比较](/images/portfolio/treatment_pathway_comparison.png)
 
+![图4: 显著差异的生命体征比较](/images/portfolio/vital_signs_comparison.png)
 死亡组平均心率（124.3次/分）显著高于生存组（112.7次/分，p<0.01），平均呼吸频率（32.1次/分）也显著高于生存组（26.4次/分，p<0.05）。
 
 # 5. 模型性能与特征重要性
