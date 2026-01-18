@@ -1,20 +1,11 @@
 ---
-title: "Teaching experience 2"
-collection: teaching
-type: "Workshop"
-permalink: /teaching/2015-spring-teaching-1
-venue: "University 1, Department"
-date: 2015-01-01
-location: "City, Country"
+title: "Master of Science in Pharmacy"
+collection: education
+type: "Graduate program"
+permalink: /education/2023-ms-pku-pharmacy
+venue: "Peking University, School of Pharmacy"
+date: 2023-09-01
+location: "Beijing, China"
 ---
 
-This is a description of a teaching experience. You can use markdown like any other post.
-
-Heading 1
-======
-
-Heading 2
-======
-
-Heading 3
-======
+Master of Science in the Department of Pharmacy, School of Pharmacy, Peking University (2023–2025).
