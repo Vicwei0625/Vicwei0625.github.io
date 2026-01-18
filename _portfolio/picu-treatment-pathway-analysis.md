@@ -133,14 +133,15 @@ rf_feature_importance = pd.DataFrame({
 }).sort_values('重要性', ascending=False)
 分析结果
 1. 诊断分布与死亡率
-
+![alt text](https://github.com/username/reponame/blob/branch/image.jpg?raw=true)
 ![Project Logo]((https://images/portfolio/picu-treatment-outcome-prediction/diagnosis_category_distribution.png)?raw=true)
 数据分析显示，呼吸系统疾病是PICU最常见的诊断类别（占45.2%），其次是神经系统疾病（28.7%）和感染性疾病（12.3%）。
-
+![alt text](https://github.com/username/reponame/blob/branch/image.jpg?raw=true)
 ![Project Logo]([https://github.com/johnsmith/myproject/blob/main/images/logo.png](https:///images/portfolio/picu-treatment-outcome-prediction/mortality_by_diagnosis_category.png)?raw=true)
 循环系统疾病的死亡率最高（15.6%），其次是神经系统疾病（9.8%）和先天畸形（8.2%）。总体死亡率为7.3%。
 
 2. 诊疗路径特征差异
+![alt text](https://github.com/username/reponame/blob/branch/image.jpg?raw=true)
 https:///images/portfolio/picu-treatment-outcome-prediction/treatment_pathway_comparison.png
 
 死亡组相比生存组显示：
@@ -152,16 +153,19 @@ https:///images/portfolio/picu-treatment-outcome-prediction/treatment_pathway_co
 抗生素使用率更高：78.3% vs 62.1%（p<0.05）
 
 3. 住院时长分析
+![alt text](https://github.com/username/reponame/blob/branch/image.jpg?raw=true)
 https:///images/portfolio/picu-treatment-outcome-prediction/length_of_stay_analysis.png
 
 生存组平均住院时长为6.2天，死亡组为4.8天（p<0.05）。死亡组住院时长分布更集中，多数在7天内。
 
 4. 生命体征差异
+![alt text](https://github.com/username/reponame/blob/branch/image.jpg?raw=true)
 https:///images/portfolio/picu-treatment-outcome-prediction/vital_signs_comparison.png
 
 死亡组平均心率（124.3次/分）显著高于生存组（112.7次/分，p<0.01），平均呼吸频率（32.1次/分）也显著高于生存组（26.4次/分，p<0.05）。
 
 5. 模型性能与特征重要性
+![alt text](https://github.com/username/reponame/blob/branch/image.jpg?raw=true)
 https:///images/portfolio/picu-treatment-outcome-prediction/random_forest_feature_importance.png
 
 随机森林模型识别的最重要预测特征包括：
@@ -175,6 +179,6 @@ https:///images/portfolio/picu-treatment-outcome-prediction/random_forest_featur
 住院天数（重要性：0.121）
 
 注射次数（重要性：0.098）
-![alt text](https://images/portfolio/picu-treatment-outcome-prediction/roc_curves_comparison?raw=true)
+![alt text](https://github.com/Vicwei0625/images/portfolio/picu-treatment-outcome-prediction/roc_curves_comparison?raw=true)
 
 随机森林模型的AUC为0.832，优于逻辑回归模型（AUC=0.786）。随机森林在召回率（死亡）方面表现更好（0.741 vs 0.685），能更有效地识别高危患者。
