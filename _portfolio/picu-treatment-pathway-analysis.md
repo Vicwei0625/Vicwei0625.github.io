@@ -176,6 +176,6 @@ https:///images/portfolio/picu-treatment-outcome-prediction/random_forest_featur
 住院天数（重要性：0.121）
 
 注射次数（重要性：0.098）
-avetor: "images/portfolio/picu-treatment-outcome-prediction/roc_curves_comparison.png"
+![alt text](https://images/portfolio/picu-treatment-outcome-prediction/roc_curves_comparison?raw=true)
 
 随机森林模型的AUC为0.832，优于逻辑回归模型（AUC=0.786）。随机森林在召回率（死亡）方面表现更好（0.741 vs 0.685），能更有效地识别高危患者。
