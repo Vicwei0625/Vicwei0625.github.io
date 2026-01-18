@@ -23,31 +23,27 @@ tech_stack:
 本项目基于某儿童重症监护室（PICU）24小时内的临床诊疗数据，旨在分析患儿的诊疗路径特征与住院结局（生存/死亡）之间的关联。通过数据清洗、特征工程、统计分析以及机器学习建模，识别影响患儿预后的关键因素，构建死亡率预测模型，为临床决策提供数据支持。
 
 核心实现
-1. 数据预处理与特征工程
-
+1. 诊断类别分类
 ```
-# 创建年龄分组
-def age_group(months):
-    if months < 12:
-        return '婴儿(<1岁)'
-    elif months < 36:
-        return '幼儿(1-3岁)'
-    elif months < 72:
-        return '学龄前(3-6岁)'
-    elif months < 144:
-        return '学龄期(6-12岁)'
-    else:
-        return '青少年(≥12岁)'
+# 查看最常见的诊断
+#print("最常见的10个主要诊断:")
+top_diagnoses = df_clean['primary_diagnosis'].value_counts().head(10)
+display(top_diagnoses)
 
-df_clean['age_group'] = df_clean['age_month'].apply(age_group)
-```
+# 保存诊断分布表格
+top_diagnoses_df = pd.DataFrame(top_diagnoses).reset_index()
+top_diagnoses_df.columns = ['诊断编码', '病例数']
+top_diagnoses_df.to_csv('tables/top_diagnoses.csv', index=False, encoding='utf-8-sig')
+#print("已保存: tables/top_diagnoses.csv")
 
 # 基于ICD编码创建诊断大类
 def get_diagnosis_category(icd_code):
     if pd.isna(icd_code):
         return '其他'
+
     icd_prefix = icd_code.split('.')[0]
-    
+
+    # 根据ICD-10分类
     if icd_prefix.startswith('J'):
         return '呼吸系统疾病'
     elif icd_prefix.startswith('G'):
@@ -66,8 +62,35 @@ def get_diagnosis_category(icd_code):
         return '其他'
 
 df_clean['diagnosis_category'] = df_clean['primary_diagnosis'].apply(get_diagnosis_category)
+
+#print("\n诊断大类分布:")
+diag_cat_counts = df_clean['diagnosis_category'].value_counts()
+display(diag_cat_counts)
+
+# 保存诊断大类分布表格
+diag_cat_counts_df = pd.DataFrame(diag_cat_counts).reset_index()
+diag_cat_counts_df.columns = ['诊断类别', '病例数']
+diag_cat_counts_df['百分比'] = (diag_cat_counts_df['病例数'] / diag_cat_counts_df['病例数'].sum() * 100).round(1)
+diag_cat_counts_df.to_csv('tables/diagnosis_category_distribution.csv', index=False, encoding='utf-8-sig')
+#print("已保存: tables/diagnosis_category_distribution.csv")
+
+# 可视化并保存图表
+plt.figure(figsize=(12, 6))
+sns.barplot(x=diag_cat_counts.values, y=diag_cat_counts.index, palette='viridis')
+plt.title('主要诊断类别分布')
+plt.xlabel('病例数')
+plt.tight_layout()
+plt.savefig('figures/diagnosis_category_distribution.png', dpi=300, bbox_inches='tight')
+plt.savefig('figures/diagnosis_category_distribution.pdf', bbox_inches='tight')
+plt.show()
+#print("已保存: figures/diagnosis_category_distribution.png/.pdf")
+```
 2. 诊疗路径特征分析
-python
+```
+# Cell 6: 诊疗路径特征分析（修改版）
+plt.rcParams['font.sans-serif'] = ['SimHei'] # 使用黑体
+plt.rcParams['axes.unicode_minus'] = False # 解决负号显示问题
+
 # 选择关键诊疗路径变量
 treatment_vars = [
     'med_count', 'unique_meds', 'injection_count', 'antibiotic_flag',
@@ -78,59 +101,212 @@ treatment_vars = [
 survival_group = df_clean[df_clean['hospital_expire_flag'] == 0]
 death_group = df_clean[df_clean['hospital_expire_flag'] == 1]
 
-# 统计分析
+#print("诊疗路径特征比较 (生存组 vs 死亡组):")
+treatment_comparison_data = []
+
 for var in treatment_vars:
     if var.endswith('_flag'):
+        # 对于标志变量，计算比例
         survival_rate = survival_group[var].mean() * 100
         death_rate = death_group[var].mean() * 100
         t_stat, p_val = stats.chi2_contingency(pd.crosstab(df_clean[var], df_clean['hospital_expire_flag']))[:2]
-    else:
-        t_stat, p_val = stats.ttest_ind(survival_group[var], death_group[var], nan_policy='omit')
-3. 逻辑回归预测模型
-python
-# 准备特征和标签
-features = [
-    'age_month', 'gender_code', 'los_days',
-    'med_count', 'unique_meds', 'injection_count', 'antibiotic_flag',
-    'lab_test_count', 'surgery_flag', 'exam_report_count',
-    'temperature_mean', 'pulse_mean', 'resp_rate_mean'
-]
 
-available_features = [f for f in features if f in df_clean.columns]
-X = df_clean[available_features].copy()
-y = df_clean['hospital_expire_flag'].copy()
+        #print(f"\n{var}:")
+        #print(f"  生存组: {survival_rate:.1f}%")
+        #print(f"  死亡组: {death_rate:.1f}%")
+        #print(f"  χ²检验p值: {p_val:.4f}")
+
+        treatment_comparison_data.append({
+            '变量': var,
+            '类型': '分类变量',
+            '生存组': f"{survival_rate:.1f}%",
+            '死亡组': f"{death_rate:.1f}%",
+            'p值': p_val,
+            '差异显著': '是' if p_val < 0.05 else '否'
+        })
+    else:
+        # 对于连续变量，计算均值和统计检验
+        t_stat, p_val = stats.ttest_ind(survival_group[var], death_group[var], nan_policy='omit')
+
+        #print(f"\n{var}:")
+        #print(f"  生存组均值: {survival_group[var].mean():.2f}")
+        #print(f"  死亡组均值: {death_group[var].mean():.2f}")
+        #print(f"  t检验p值: {p_val:.4f}")
+       # if p_val < 0.05:
+          #  print(f"  *差异显著 (p<0.05)")
+
+        treatment_comparison_data.append({
+            '变量': var,
+            '类型': '连续变量',
+            '生存组': f"{survival_group[var].mean():.2f}",
+            '死亡组': f"{death_group[var].mean():.2f}",
+            'p值': p_val,
+            '差异显著': '是' if p_val < 0.05 else '否'
+        })
+
+# 保存诊疗路径特征比较表格
+treatment_comparison_df = pd.DataFrame(treatment_comparison_data)
+treatment_comparison_df.to_csv('tables/treatment_pathway_comparison.csv', index=False, encoding='utf-8-sig')
+#print("\n已保存: tables/treatment_pathway_comparison.csv")
+
+```
+
+3. 逻辑回归预测模型及训练
+```
+# 处理缺失值
+X = X.fillna(X.median())
 
 # 划分训练集和测试集
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
 
-# 训练逻辑回归模型
+#print(f"训练集大小: {X_train.shape}")
+#print(f"测试集大小: {X_test.shape}")
+#print(f"训练集死亡率: {y_train.mean():.3f}")
+#print(f"测试集死亡率: {y_test.mean():.3f}")
+
+# Cell 11: 训练逻辑回归模型（修改版）
+# 标准化特征
 scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
+# 训练逻辑回归模型
 logreg = LogisticRegression(random_state=42, max_iter=1000, class_weight='balanced')
 logreg.fit(X_train_scaled, y_train)
 
-# 预测与评估
+# 预测
 y_pred = logreg.predict(X_test_scaled)
 y_pred_proba = logreg.predict_proba(X_test_scaled)[:, 1]
+
+# 评估模型
+#print("逻辑回归模型评估:")
+#print("\n分类报告:")
+#print(classification_report(y_test, y_pred))
+
+#print("\n混淆矩阵:")
+cm = confusion_matrix(y_test, y_pred)
+cm_df = pd.DataFrame(cm, index=['实际生存', '实际死亡'], columns=['预测生存', '预测死亡'])
+display(cm_df)
+
+# 计算AUC
 roc_auc = roc_auc_score(y_test, y_pred_proba)
+#print(f"\nROC AUC: {roc_auc:.3f}")
+
+# 特征重要性
+feature_importance = pd.DataFrame({
+    '特征': available_features,
+    '系数': logreg.coef_[0],
+    '绝对值系数': np.abs(logreg.coef_[0])
+}).sort_values('绝对值系数', ascending=False)
+
+#print("\n特征重要性 (系数绝对值排序):")
+display(feature_importance.head(10))
+
+# 保存逻辑回归模型结果
+# 混淆矩阵
+confusion_matrix_df = pd.DataFrame({
+    '实际\\预测': ['实际生存', '实际死亡'],
+    '预测生存': [cm[0, 0], cm[1, 0]],
+    '预测死亡': [cm[0, 1], cm[1, 1]]
+})
+confusion_matrix_df.to_csv('tables/logistic_regression_confusion_matrix.csv', index=False, encoding='utf-8-sig')
+
+# 特征重要性
+feature_importance.to_csv('tables/logistic_regression_feature_importance.csv', index=True, encoding='utf-8-sig')
+
+# 保存模型性能指标
+lr_performance = pd.DataFrame({
+    '指标': ['ROC AUC', '准确率', '精确率(死亡)', '召回率(死亡)', 'F1分数(死亡)'],
+    '数值': [
+        roc_auc,
+        accuracy_score(y_test, y_pred),
+        precision_score(y_test, y_pred, pos_label=1),
+        recall_score(y_test, y_pred, pos_label=1),
+        f1_score(y_test, y_pred, pos_label=1)
+    ]
+})
+lr_performance.to_csv('tables/logistic_regression_performance.csv', index=False, encoding='utf-8-sig')
+
+#print("已保存逻辑回归模型相关表格")
+```
+
 4. 随机森林模型
-python
+```
+# Cell 12: 随机森林模型（修改版）
+plt.rcParams['font.sans-serif'] = ['SimHei'] # 使用黑体
+plt.rcParams['axes.unicode_minus'] = False # 解决负号显示问题
+
 # 训练随机森林模型
 rf = RandomForestClassifier(n_estimators=100, random_state=42, class_weight='balanced')
 rf.fit(X_train, y_train)
 
-# 预测与评估
+# 预测
 y_pred_rf = rf.predict(X_test)
 y_pred_proba_rf = rf.predict_proba(X_test)[:, 1]
-roc_auc_rf = roc_auc_score(y_test, y_pred_proba_rf)
 
-# 特征重要性分析
+# 评估模型
+#print("随机森林模型评估:")
+#print("\n分类报告:")
+#print(classification_report(y_test, y_pred_rf))
+
+#print("\n混淆矩阵:")
+cm_rf = confusion_matrix(y_test, y_pred_rf)
+cm_rf_df = pd.DataFrame(cm_rf, index=['实际生存', '实际死亡'], columns=['预测生存', '预测死亡'])
+display(cm_rf_df)
+
+# 计算AUC
+roc_auc_rf = roc_auc_score(y_test, y_pred_proba_rf)
+#print(f"\nROC AUC: {roc_auc_rf:.3f}")
+
+# 特征重要性
 rf_feature_importance = pd.DataFrame({
     '特征': available_features,
     '重要性': rf.feature_importances_
 }).sort_values('重要性', ascending=False)
+
+#print("\n随机森林特征重要性:")
+display(rf_feature_importance.head(10))
+
+# 保存随机森林模型结果
+# 混淆矩阵
+confusion_matrix_rf_df = pd.DataFrame({
+    '实际\\预测': ['实际生存', '实际死亡'],
+    '预测生存': [cm_rf[0, 0], cm_rf[1, 0]],
+    '预测死亡': [cm_rf[0, 1], cm_rf[1, 1]]
+})
+confusion_matrix_rf_df.to_csv('tables/random_forest_confusion_matrix.csv', index=False, encoding='utf-8-sig')
+
+# 特征重要性
+rf_feature_importance.to_csv('tables/random_forest_feature_importance.csv', index=True, encoding='utf-8-sig')
+
+# 保存模型性能指标
+rf_performance = pd.DataFrame({
+    '指标': ['ROC AUC', '准确率', '精确率(死亡)', '召回率(死亡)', 'F1分数(死亡)'],
+    '数值': [
+        roc_auc_rf,
+        accuracy_score(y_test, y_pred_rf),
+        precision_score(y_test, y_pred_rf, pos_label=1),
+        recall_score(y_test, y_pred_rf, pos_label=1),
+        f1_score(y_test, y_pred_rf, pos_label=1)
+    ]
+})
+rf_performance.to_csv('tables/random_forest_performance.csv', index=False, encoding='utf-8-sig')
+
+# 可视化特征重要性并保存
+plt.figure(figsize=(10, 6))
+top_features = rf_feature_importance.head(10)
+sns.barplot(data=top_features, x='重要性', y='特征', palette='viridis')
+plt.title('随机森林特征重要性 (Top 10)')
+plt.tight_layout()
+plt.savefig('figures/random_forest_feature_importance.png', dpi=300, bbox_inches='tight')
+plt.savefig('figures/random_forest_feature_importance.pdf', bbox_inches='tight')
+plt.show()
+#print("已保存: figures/random_forest_feature_importance.png/.pdf")
+
+#print("已保存随机森林模型相关表格")
+
+```
+
 分析结果
 1. 诊断分布与死亡率
 ![主要诊断类别分类](/images/portfolio/diagnosis_category_distribution.png)
