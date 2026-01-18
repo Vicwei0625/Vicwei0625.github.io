@@ -309,14 +309,14 @@ plt.show()
 
 # 分析结果
 # 1. 诊断分布与死亡率
-![主要诊断类别分类](/images/portfolio/diagnosis_category_distribution.png)
+![图1: 主要诊断类别分类](/images/portfolio/diagnosis_category_distribution.png)
 数据分析显示，呼吸系统疾病是PICU最常见的诊断类别（占45.2%），其次是神经系统疾病（28.7%）和感染性疾病（12.3%）。
-
+![图2: 不同诊断大类的死亡率](/images/portfolio/mortality_by_diagnosis_category.png)
 循环系统疾病的死亡率最高（15.6%），其次是神经系统疾病（9.8%）和先天畸形（8.2%）。总体死亡率为7.3%。
 
 # 2. 诊疗路径特征差异
 
-![不同诊断大类的死亡率](/images/portfolio/mortality_by_diagnosis_category.png)
+![图3: 显著差异的生命体征比较](/images/portfolio/vital_signs_comparison.png)
 
 死亡组相比生存组显示：
 
@@ -328,19 +328,19 @@ plt.show()
 
 # 3. 住院时长分析
    
-![住院时长与结局的关系](/images/portfolio/length_of_stay_analysis.png)
+![图4: 住院时长与结局的关系](/images/portfolio/length_of_stay_analysis.png)
 
 生存组平均住院时长为6.2天，死亡组为4.8天（p<0.05）。死亡组住院时长分布更集中，多数在7天内。
 
 # 4. 生命体征差异
 
-![关键诊疗路径特征比较](/images/portfolio/treatment_pathway_comparison.png)
+![图5: 关键诊疗路径特征比较](/images/portfolio/treatment_pathway_comparison.png)
 
 死亡组平均心率（124.3次/分）显著高于生存组（112.7次/分，p<0.01），平均呼吸频率（32.1次/分）也显著高于生存组（26.4次/分，p<0.05）。
 
 # 5. 模型性能与特征重要性
 
-![随机森林特征重要性](/images/portfolio/random_forest_feature_importance.png)
+![图6: 随机森林特征重要性](/images/portfolio/random_forest_feature_importance.png)
 
 随机森林模型识别的最重要预测特征包括：
 
@@ -354,6 +354,6 @@ plt.show()
 
 注射次数（重要性：0.098）、
 
-![预测模型ROC曲线比较](/images/portfolio/roc_curves_comparison.png)
+![图7: 预测模型ROC曲线比较](/images/portfolio/roc_curves_comparison.png)
 
 随机森林模型的AUC为0.832，优于逻辑回归模型（AUC=0.786）。随机森林在召回率（死亡）方面表现更好（0.741 vs 0.685），能更有效地识别高危患者。
