@@ -3,7 +3,7 @@ title: "PICU患儿诊疗路径分析与死亡率预测模型"
 collection: portfolio
 type: "Machine Learning"
 permalink: /portfolio/picu-treatment-outcome-prediction
-date: 2024-01-01
+date: 2026-01-18
 excerpt: "基于真实临床数据构建机器学习模型，分析儿童重症监护室患儿的诊疗路径特征与住院结局关联，预测住院死亡率"
 header:
   teaser: /images/portfolio/picu-treatment-outcome-prediction/diagnosis_category_distribution.png
